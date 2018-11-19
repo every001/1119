@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="code/js/vue.js"></script>
+	</head>
+	<body>
+		<!--vue是数据驱动  js事件驱动    -->
+		<div id="box">
+			{{msg}}
+			<div v-html="msg"></div>
+			<div v-bind:title="two">下的</div>
+			
+			<!--根据单项绑定 和 双向绑定 可非常简单的实现 全选   -->
+			<input type="checkbox" :checked="flag" /><!--v-bind可缩写为“ ： ” 单项绑定 可改变显示  不能改变data中的当前数据   -->
+			<input type="checkbox" v-model="flag" /><!--双向绑定  可改变flag的值 true 或者 false-->
+			<input type="text" v-model="two" maxlength="30"/>还可输入{{30-two.length}}
+			<br/>
+			<input type="number"  v-model="width"/>
+			<input type="number"  v-model="height"/>
+			<br/>
+			<!--<input type="range" v-model="r" min="0" max="255" />
+			<input type="range" v-model="g" min="0" max="255" />
+			<input type="range" v-model="b" min="0" max="255" />
+			<div id="color" :style="{width:width + 'px',height:height + 'px', background:'rgb('+r+','+g+','+b+')'} ">fffff</div>-->		
+			<input type="color" v-model="background" />
+			<div id="color" :style="{width:width + 'px',height:height + 'px', background:background} ">fffff</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:"#box",//管理的元素
+		data:{//data当数据
+			msg:"<h1>我去</h1>",
+			two:"hhhhh",
+			flag:true,
+			r:0,
+			g:0,
+			b:0,
+			width:200,
+			height:200,
+			background:"#ddd"
+		}
+		//template:"<p>{{two}}</p>"  //模板 {{差值表达式}}
+	})
+</script>
